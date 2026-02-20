@@ -10,13 +10,4 @@ Rather than using simple thresholding, this system uses a **Euclidean Distance A
 $$d = \sqrt{(R_n - R_{ref})^2 + (G_n - G_{ref})^2 + (B_n - B_{ref})^2}$$
 
 ### 2. Low-Level Hardware Control
-To ensure high precision and avoid the overhead of standard libraries, I implemented a custom **PWM signal generator** (`sendServoPulse`). This manually manages the 20ms duty cycle required for servo communication using microsecond-precision timing.
-
-```cpp
-void sendServoPulse(int pin, int pulseWidthUs) {
-  digitalWrite(pin, HIGH);
-  delayMicroseconds(pulseWidthUs);
-  digitalWrite(pin, LOW);
-  int lowTimeUs = SERVO_CYCLE_US - pulseWidthUs;
-  delayMicroseconds(lowTimeUs);
-}
+To ensure high precision and avoid the overhead of standard libraries, I implemented a **PWM signal generator** (`sendServoPulse`). This manually manages the 20ms duty cycle required for servo communication using microsecond-precision timing.
